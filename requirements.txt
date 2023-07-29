@@ -1,0 +1,3 @@
+quart
+quart-cors
+python-amazon-simple-product-api

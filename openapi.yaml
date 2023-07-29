@@ -1,0 +1,44 @@
+openapi: 3.0.1
+info:
+  title: Amazon Product Recommendation Plugin
+  description: A plugin that allows the user to search for Amazon products and get product recommendations.
+  version: 'v1'
+servers:
+  - url: http://localhost:5003
+paths:
+  /products/{query}:
+    get:
+      operationId: getProducts
+      summary: Get a list of product recommendations
+      parameters:
+      - in: path
+        name: query
+        schema:
+            type: string
+        required: true
+        description: The search query.
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/getProductsResponse'
+
+components:
+  schemas:
+    getProductsResponse:
+      type: object
+      properties:
+        products:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+              description:
+                type: string
+              affiliate_link:
+                type: string
+          description: The list of product recommendations.
